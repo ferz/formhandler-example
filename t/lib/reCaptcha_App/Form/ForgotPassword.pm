@@ -8,7 +8,7 @@ extends 'HTML::FormHandler'; # se non derivasse da DBIC
 # with 'HTML::FormHandler::Widget::Theme::Bootstrap';
 with 'HTML::FormHandler::Widget::Theme::BootstrapFormMessages';
 
-with 'HTML::FormHandlerX::Widget::Field::reCAPTCHA';
+#with 'HTML::FormHandlerX::Widget::Field::reCAPTCHA';  REMOVED, UNNEEDED - JNAP
 use HTML::FormHandler::Types ('Email' );
 
 our $VERSION = '0.01';
@@ -22,6 +22,8 @@ has '+widget_wrapper' => ( default => 'Bootstrap' );
 #has '+item_class' => ( default => 'Utenti' );
 has '+is_html5' => (default=>1);
 
+has ['recaptcha_public_key','recaptcha_private_key'] => (is => 'rw', isa=>'Str', required=>1);
+
 has_field 'email' => (type => 'Email', 'label'=>'email', element_class=>'span4', required=>1);
 
 has_field 'recaptcha' => (
@@ -32,6 +34,5 @@ has_field 'recaptcha' => (
 
 has_field 'submit' => ( type => 'Submit', value => q(Send me email), element_class => ['btn', 'btn-primary'] );
 
-has ['recaptcha_public_key','recaptcha_private_key'] => (is => 'rw', isa=>'Str', required=>1);
 no HTML::FormHandler::Moose;
 1;

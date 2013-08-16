@@ -7,9 +7,8 @@ use Test::More;
 
 $DB::single=1;
 
-my $expected = q(<script src="http://www.google.com/recaptcha/api/challenge?k=zio+pino" type="text/javascript"></script>);
-
-content_like('/forgot_password', qr/$expected/, 'ok recaptcha');
+my $expected = qr(http://www.google.com/recaptcha/api/challenge\?k=zio\+pino" type="text/javascript"></script>);
+content_like('/forgot_password', $expected, 'ok recaptcha');
 
 done_testing;
 
